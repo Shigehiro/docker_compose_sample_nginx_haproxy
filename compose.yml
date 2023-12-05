@@ -6,9 +6,8 @@ services:
     volumes:
       - ./nginx_conf/html/nginx01.html:/usr/share/nginx/html/index.html:ro
       - ./nginx_conf/conf/nginx.conf:/etc/nginx/nginx.conf:ro
-    networks:
-      nginx_haproxy_seg:
-        ipv4_address: 172.25.10.10
+    networks: 
+    - nginx_haproxy_seg
   nginx02:
     container_name: nginx02
     image: docker.io/nginx:latest
@@ -16,26 +15,23 @@ services:
     volumes:
       - ./nginx_conf/html/nginx02.html:/usr/share/nginx/html/index.html:ro
       - ./nginx_conf/conf/nginx.conf:/etc/nginx/nginx.conf:ro
-    networks:
-      nginx_haproxy_seg:
-        ipv4_address: 172.25.10.11
+    networks: 
+    - nginx_haproxy_seg
   haproxy:
     container_name: haproxy
     image: docker.io/haproxy:latest
     tty: true
     volumes:
       - ./haproxy_conf/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
-    networks:
-      nginx_haproxy_seg:
-        ipv4_address: 172.25.10.20
+    networks: 
+    - nginx_haproxy_seg
   curl:
     container_name: curl
     image: docker.io/curlimages/curl:latest
     command: sh
     tty: true
-    networks:
-      nginx_haproxy_seg:
-        ipv4_address: 172.25.10.30
+    networks: 
+    - nginx_haproxy_seg
 networks:
   nginx_haproxy_seg:
     driver: bridge
@@ -44,3 +40,4 @@ networks:
       config:
       - subnet: "172.25.10.0/24"
         gateway: "172.25.10.1"
+

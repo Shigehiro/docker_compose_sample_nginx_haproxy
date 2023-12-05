@@ -23,18 +23,14 @@ nginx02   /docker-entrypoint.sh ngin ...   Up      80/tcp
 
 <br>Access to the Nginx
 ```
-$ docker exec curl curl http://nginx01 -s
+$ for i in $(seq 1 2);do docker exec nginx0$i curl 127.1 -s ;done
 nginx01
-
-$ docker exec curl curl http://nginx02 -s
 nginx02
 ```
 
-<br>Access to the VIP
+<br>Access to the VIP to chcek if haproxy loadbalances in round-robin fashion.
 ```
-$ docker exec curl curl http://haproxy -s
+$ for i in $(seq 1 2);do docker exec curl curl http://haproxy -s ;done
 nginx01
-
-$ docker exec curl curl http://haproxy -s
 nginx02
 ```
