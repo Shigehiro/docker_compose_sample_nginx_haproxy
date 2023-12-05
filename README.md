@@ -1,5 +1,29 @@
 # Sample Docker Compose file
 
+## Description
+
+This Compose file will launch four containers: one HAProxy, two Nginx, and one cURL container. You don't have to configure Nginx and HAProxy because the Docker Compose file covers those.
+
+[![asciicast](https://asciinema.org/a/aXNsBNtrzbKULSRGSRsBk4ZDz.png)](https://asciinema.org/a/aXNsBNtrzbKULSRGSRsBk4ZDz)
+
+## Tested Environment
+
+```
+$ tail -1 /etc/lsb-release 
+DISTRIB_DESCRIPTION="Ubuntu 22.04.3 LTS"
+
+$ docker --version
+Docker version 24.0.7, build afdd53b
+
+$ docker-compose version
+docker-compose version 1.29.2, build unknown
+docker-py version: 5.0.3
+CPython version: 3.10.12
+OpenSSL version: OpenSSL 3.0.2 15 Mar 2022
+```
+
+## Walkthrough
+
 <br>Start the containers
 ```
 $ docker-compose up -d
